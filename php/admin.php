@@ -9,6 +9,9 @@
 <script src="../js/bootstrap.js"></script>
 </head>
 <body>
+    <?php
+        include '../php/connectdb.php'
+    ?>
 <div class="container">
     <div class="jumbotron">
         <h1 align="center">CS3319 Assignment 3</h1>
