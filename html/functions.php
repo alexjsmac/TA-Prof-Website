@@ -14,3 +14,16 @@ function destroy_session()
 	session_destroy();
 }
 
+function query_database($query)
+{
+	$result = mysqli_query($connection, $query);
+	if(!$result)
+	{
+		die("Database query failed.");
+	}
+	else
+	{
+		return $result;
+	}
+}
+
