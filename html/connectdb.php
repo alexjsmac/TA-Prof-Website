@@ -4,12 +4,11 @@ $dbuser= "root";
 $dbpass = "";
 $dbname = "";
 
-try {
-	$connection = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbser, $dbpass);
-	$connection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-	echo "Database access failed.";	
+
+$connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+if (mysqli_connect_errno()) {
+     die("database connection failed :" . mysqli_connect_error() .
+     "(" . mysqli_connect_errno() . ")");
 }
 
 ?>
