@@ -4,7 +4,7 @@
    if (!$result) {
         die("databases query failed.");
     }
-   echo "For which professor?</br>";
+   echo "Select a Professor:<br/><br/>";
    while ($row = mysqli_fetch_assoc($result)) {
         echo '<input type="radio" name="professors" value="';
         echo $row["userid"];

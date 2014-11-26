@@ -13,6 +13,9 @@
   <?php
   include 'connectdb.php';
   $whichProf = $_POST["professors"];
+  $whichCourse = $_POST["courses"];
+  if ($whichProf != NULL) $toDisplay = $whichProf;
+  else $toDisplay = $whichCourse;
   ?>
   <div class="container">
     <nav class="navbar navbar-default" role="navigation">
@@ -37,13 +40,21 @@
     </nav>
 
     <?php
-    $query = 'select t.firstname, t.lastname, t.studentnum, t.userid, t.type, t.image from ta AS t, prof AS p where t.headid=p.userid and t.headid="' . $whichProf . '"';
+    if ($whichProf != null)
+      $query = 'select t.firstname, t.lastname, t.studentnum, t.userid, t.type, t.image from ta AS t, prof AS p where t.headid=p.userid and t.headid="' . $whichProf . '"';
+    else if ($whichCourse != null)
+    {
+      $query = 'select t.firstname, t.lastname, t.studentnum, t.userid, t.type, t.image, x.coursenum, c.coursenum FROM ta as t ' .
+      'join assignedto as x on t.userid = x.studentid join course as c on x.coursenum = c.coursenum where x.coursenum = "' . $whichCourse . '"';
+    }
+
+    
     $result=mysqli_query($connection,$query);
     if (!$result) {
      die("database query2 failed.");
    }
    ?>
-   <h3>TA's for <?php echo $whichProf; ?></h3>
+   <h3>TA's for <?php echo $toDisplay; ?></h3>
    <table class="table">
     <thead>
       <tr>
@@ -71,9 +82,6 @@
   <?php
   mysqli_close($connection);
   ?>
-
-
-
 </div>
 </body>
 </html>

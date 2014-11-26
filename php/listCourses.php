@@ -4,7 +4,7 @@
    if (!$result) {
         die("databases query failed.");
     }
-   echo "For which course?</br>";
+   echo "Select a Course:<br/><br/>";
    while ($row = mysqli_fetch_assoc($result)) {
         echo '<input type="radio" name="courses" value="';
         echo $row["coursenum"];
