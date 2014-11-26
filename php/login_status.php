@@ -18,7 +18,7 @@ function logbutton($status, $user)
 {
 	if($status)
 	{
-		echo '<p align="right">Logged in as ' . $user. ' <a href = "logout.php" type="button" class="btn btn-primary">Logout</a></p>';
+		echo '<p align="right">Logged in as ' . $user . ' <a href = "logout.php" type="button" class="btn btn-primary">Logout</a></p>';
 	}
 	else if (!$status)
 	{
