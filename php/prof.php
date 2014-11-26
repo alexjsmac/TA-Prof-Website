@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Twitter Bootstrap 3 Responsive Layout Example</title>
+<title>CS3319 Assignment 3</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="../js/bootstrap.js"></script>
 </head>
 <body>
+  <?php
+    include 'connectdb.php';
+  ?>
     <div class="container">
         <div class="jumbotron">
             <h1 align="center">CS3319 Assignment 3</h1>
@@ -25,7 +28,12 @@
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <p>HTML stands for HyperText Markup Language. HTML is the main markup language for describing the structure of Web pages. <a href="http://www.tutorialrepublic.com/html-tutorial/" target="_blank">Learn more.</a></p>
+                          <form action="getdata.php" method="post">
+                            <?php
+                              include 'getTAs.php';
+                            ?>
+                            <input type="submit" value="Get TAs">
+                          </form>
                         </div>
                     </div>
                 </div>
@@ -37,7 +45,12 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <p>Twitter Bootstrap is a powerful front-end framework for faster and easier web development. It is a collection of CSS and HTML conventions. <a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/" target="_blank">Learn more.</a></p>
+                          <form action="getdata.php" method="post">
+                            <?php
+                              include 'listCourses.php';
+                            ?>
+                            <input type="submit" value="Get TAs">
+                          </form>
                         </div>
                     </div>
                 </div>

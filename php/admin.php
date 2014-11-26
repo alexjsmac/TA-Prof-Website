@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Twitter Bootstrap 3 Responsive Layout Example</title>
+<title>CS3319 Assignment 3</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -10,7 +10,7 @@
 </head>
 <body>
     <?php
-        include '../php/connectdb.php'
+        include 'connectdb.php'
     ?>
 <div class="container">
     <div class="jumbotron">
@@ -28,7 +28,6 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body">
-                    <p>HTML stands for HyperText Markup Language. HTML is the main markup language for describing the structure of Web pages. <a href="http://www.tutorialrepublic.com/html-tutorial/" target="_blank">Learn more.</a></p>
                 </div>
             </div>
         </div>
@@ -40,7 +39,18 @@
             </div>
             <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <p>Twitter Bootstrap is a powerful front-end framework for faster and easier web development. It is a collection of CSS and HTML conventions. <a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/" target="_blank">Learn more.</a></p>
+                    <h2>ADD A NEW PROFESSOR:</h2>
+                    <form action="addnewprof.php" method="post">
+                        First Name: <input type="text" name="firstname"><br>
+                        Last Name: <input type="text" name="lastname"><br>
+                        User ID: <input type="text" name="userid"><br>
+                       <input type="submit" value="Add New Professor">
+                   </form>
+                   <h2>DELETE A PROFESSOR:</h2>
+                    <form action="delprof.php" method="post">
+                        User ID: <input type="text" name="userid"><br>
+                       <input type="submit" value="Delete Professor">
+                   </form>
                 </div>
             </div>
         </div>
