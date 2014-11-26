@@ -9,7 +9,7 @@ $password = "";
 
 if($loggedin)
 {
-	header("Location: prof.php");
+	header("Location: admin.php");
 }
 else if (isset($_POST['username']))
 {
@@ -62,6 +62,7 @@ else if (isset($_POST['username']))
             <h1 align="center">CS3319 Assignment 3</h1>
             <p align="center">By: Alex MacLean & Will Callaghan</p>
         </div>
+        <h2> Login to access secretary privileges:</h2>
         <div class=>
         <div class="span12">
             <form class="form-horizontal" action='login.php' method="POST">

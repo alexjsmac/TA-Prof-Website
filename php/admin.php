@@ -19,7 +19,7 @@
         <h1 align="center">CS3319 Assignment 3</h1>
         <p align="center">By: Alex MacLean & Will Callaghan</p>
     </div>
-    <p align="right">Logged in as secretary <button type="button" class="btn btn-primary">Logout</button></p>
+    <?php require_once 'login_status.php'; logbutton($loggedin,$userstr); ?>
     <div class="bs-example">
     <div class="panel-group" id="accordion">
         <div class="panel panel-default">
