@@ -18,11 +18,12 @@ function logbutton($status, $user)
 {
 	if($status)
 	{
-		echo '<p align="right">Logged in as ' . $user . ' <a href = "logout.php" type="button" class="btn btn-primary">Logout</a></p>';
+		echo '<a href = "logout.php" type="button" class="btn btn-primary navbar-btn navbar-right">Logout</a>';
+		echo '<p class="navbar-text navbar-right">Signed in as ' . $user . '&nbsp&nbsp&nbsp</p>';
 	}
 	else if (!$status)
 	{
-		echo '<p align="right"><a href = "login.php" type="button" class="btn btn-primary">Login</a></p>';
+		echo '<a href = "login.php" type="button" class="btn btn-primary navbar-btn navbar-right">Login</a>';
 	}
 }
 
