@@ -3,6 +3,7 @@ $dbhost = "localhost";
 $dbuser= "root";
 $dbpass = "cs3319";
 $dbname = "amacle45tadb";
+
 $connection = mysqli_connect($dbhost, $dbuser,$dbpass,$dbname);
 if (mysqli_connect_errno()) {
      die("database connection failed :" .

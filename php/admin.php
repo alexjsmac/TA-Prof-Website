@@ -10,7 +10,9 @@
 </head>
 <body>
     <?php
-        include 'connectdb.php'
+        require_once 'connectdb.php';
+        require_once 'login_status.php';
+        if(!$loggedin) header("Location: prof.php");
     ?>
 <div class="container">
     <div class="jumbotron">
