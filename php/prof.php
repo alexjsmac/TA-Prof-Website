@@ -56,7 +56,7 @@
                 include 'getTAs.php';
                 ?>
                 <br/>
-                <input type="submit" value="Get TAs">
+                <button class="btn btn-success">Get TAs</button>
               </form>
             </div>
           </div>
@@ -74,7 +74,7 @@
                 include 'listCourses.php';
                 ?>
                 <br/>
-                <input type="submit" value="Get TAs">
+                <button class="btn btn-success">Get TAs</button>
               </form>
             </div>
           </div>

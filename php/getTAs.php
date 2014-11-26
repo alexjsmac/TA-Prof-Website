@@ -6,7 +6,7 @@
     }
    echo "Select a Professor:<br/><br/>";
    while ($row = mysqli_fetch_assoc($result)) {
-        echo '<input type="radio" name="professors" value="';
+        echo '<input type="radio" name="professors" checked = "true" value="';
         echo $row["userid"];
         echo '">' . " " . $row["firstname"] . " " . $row["lastname"] . "<br>";
    }
