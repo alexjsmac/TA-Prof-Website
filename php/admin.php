@@ -85,7 +85,6 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <h3>Which TA?</h3>
                     <form action="modTA.php" method="post">
                         <?php
                           include 'getTAs.php';
@@ -125,7 +124,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Assign a professor to a TA</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Assign a TA to a professor</a>
                 </h4>
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
