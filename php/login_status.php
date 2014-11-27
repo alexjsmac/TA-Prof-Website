@@ -27,4 +27,13 @@ function logbutton($status, $user)
 	}
 }
 
+function display_error($error)
+{
+	if($error != null)
+	{
+		echo '<div class="alert alert-danger" role="alert">
+          <p> Error: ' . $error . '</div>';
+	}
+}
+
 ?>

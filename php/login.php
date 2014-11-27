@@ -3,7 +3,6 @@
 require_once 'login_status.php';
 require_once 'connectdb.php';
 
-$error = "";
 $username = "";
 $password = "";
 
@@ -21,7 +20,7 @@ else if (isset($_POST['username']))
 	else if ($username == "")
 		$error = "Please enter your username.<br/>";
 	else if ($password == "")
-		$error = "Please enter your password<br/>";
+		$error = "Please enter your password.<br/>";
 	else
 	{
 		$query = "SELECT username, password FROM administration
@@ -42,6 +41,8 @@ else if (isset($_POST['username']))
 		}
 	}
 }
+else
+  $error = "";
 
 ?>
 
@@ -85,6 +86,7 @@ else if (isset($_POST['username']))
     </nav>
 
         <h2> Login to access secretary privileges:</h2>
+        <?php require_once 'login_status.php'; display_error($error); ?>
         <div class=>
         <div class="span12">
             <form class="form-horizontal" action='login.php' method="POST">

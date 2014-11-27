@@ -41,7 +41,15 @@
 
     <?php
     if ($whichProf != null)
-      $query = 'select t.firstname, t.lastname, t.studentnum, t.userid, t.type, t.image from ta AS t, prof AS p where t.headid=p.userid and t.headid="' . $whichProf . '"';
+    {
+      //$query = 'select t.firstname, t.lastname, t.studentnum, t.userid, t.type, t.image from ta AS t, prof AS p where t.headid=p.userid and t.headid="' . $whichProf . '"';
+      //$query = 'select t.firstname, t.lastname, t.studentnum, t.userid, t.type, t.image, t.headid FROM ta AS t ' .
+    //'WHERE t.userid IN (select c.superid FROM cosupervises AS c WHERE c.superid="' . $whichProf .
+      //'" UNION (select x.userid FROM ta AS x WHERE x.headid="' . $whichProf . '"))';
+      $query = 'select t.firstname, t.lastname, t.studentnum, t.userid, t.type, t.image, t.headid from ta as t ' . 
+      'where t.headid="' . $whichProf . '" union (select x.firstname, x.lastname, x.studentnum, x.userid, x.type, x.image, x.headid from ta as x where x.userid in (select c.studentid from' .
+        ' cosupervises as c where c.superid="' . $whichProf . '"))';
+    }
     else if ($whichCourse != null)
     {
       $query = 'select t.firstname, t.lastname, t.studentnum, t.userid, t.type, t.image, x.coursenum, c.coursenum FROM ta as t ' .
@@ -51,7 +59,7 @@
     
     $result=mysqli_query($connection,$query);
     if (!$result) {
-     die("database query2 failed.");
+     die("database query2 failed. " . $connection->error);
    }
    ?>
    <h3>TA's for <?php echo $toDisplay; ?></h3>
@@ -64,10 +72,12 @@
         <th>Western ID</th>
         <th>Graduate Type</th>
         <th>Image</th>
+        <?php require_once 'functions.php'; displayTypeHeader($whichProf); ?>
       </tr>
     </thead>
     <tbody>
-      <?php while ($row=mysqli_fetch_assoc($result)) {
+      <?php require_once 'functions.php';
+      while ($row=mysqli_fetch_assoc($result)) {
         echo '<tr>';
         echo '<td>' . $row['firstname'] . '</td>';
         echo '<td>' . $row['lastname'] . '</td>';
@@ -75,6 +85,7 @@
         echo '<td>' . $row['userid'] . '</td>';
         echo '<td>' . $row['type'] . '</td>';
         echo '<td>' . $row['image'] . '</td>';
+        displayTypeInfo($row, $whichProf);
       }
       ?>
     </tbody>

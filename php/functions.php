@@ -27,3 +27,23 @@ function query_database($connection, $query)
 	}
 }
 
+function displayTypeHeader($user)
+{
+	if($user != null)
+	{
+		echo '<th>Head/Co-Supervisor</th>';
+	}
+}
+
+function displayTypeInfo($row, $whichProf)
+{
+	if ($row['headid'] == $whichProf)
+	{
+		echo '<td>Head Supervisor</td>';
+	}
+	else
+	{
+		echo '<td>Co-Supervisor</td>';
+	}
+}
+
