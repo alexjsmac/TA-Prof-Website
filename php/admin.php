@@ -74,7 +74,7 @@
                         get_tas("userid", $connection);
                         ?>
                         <br/>
-                        <button class="btn btn-success">Delete TA</button>
+                        <button class="btn btn-danger">Delete TA</button>
                     </form>
                 </div>
             </div>
@@ -112,7 +112,7 @@
                         First Name: <input type="text" name="firstname"><br>
                         Last Name: <input type="text" name="lastname"><br>
                         User ID: <input type="text" name="userid"><br><br>
-                        <input type="submit" value="Add New Professor">
+                        <button class="btn btn-success">Add New Professor</button>
                     </form>
                     <h2>DELETE A PROFESSOR:</h2>
                     <form action="delprof.php" method="post">
@@ -122,7 +122,7 @@
                         get_profs("userid", $connection);
                         ?>
                         <br/>
-                        <input type="submit" value="Delete Professor">
+                        <button class="btn btn-danger">Delete Professor</button>
                     </form>
                 </div>
             </div>
@@ -165,12 +165,13 @@
                     <form action="addnewcourse.php" method="post">
                         Course Name: <input type="text" name="coursename"><br>
                         Course Number: <input type="text" name="coursenum"><br><br>
-                        <input type="submit" value="Add New Course">
+                        <button class="btn btn-success">Add New Course</button>
                     </form>
                     <h2>DELETE A COURSE:</h2>
                     <form action="delCourse.php" method="post">
-                        Course Number: <input type="text" name="coursenum"><br><br>
-                        <input type="submit" value="Delete Course">
+                        <?php include 'listCourses.php' ?>
+                        <br/>
+                        <button class="btn btn-danger">Delete Course</button>
                     </form>
                 </div>
             </div>
