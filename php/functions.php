@@ -37,7 +37,11 @@ function displayTypeHeader($user)
 
 function displayTypeInfo($row, $whichProf)
 {
-	if ($row['headid'] == $whichProf)
+	if ($whichProf == null)
+	{
+		return;
+	}
+	else if ($row['headid'] == $whichProf)
 	{
 		echo '<td>Head Supervisor</td>';
 	}
