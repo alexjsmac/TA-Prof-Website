@@ -51,7 +51,7 @@
           </div>
           <div id="collapseOne" class="panel-collapse collapse">
             <div class="panel-body">
-              <form action="getTAs.php" method="post">
+              <form action="TATable.php" method="post">
                 <?php
                 include 'getProfs.php';
                 ?>
@@ -69,7 +69,7 @@
           </div>
           <div id="collapseTwo" class="panel-collapse collapse">
             <div class="panel-body">
-              <form action="getTAs.php" method="post">
+              <form action="TATable.php" method="post">
                 <?php
                 include 'listCourses.php';
                 ?>
