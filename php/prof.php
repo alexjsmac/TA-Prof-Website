@@ -49,11 +49,11 @@
               <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">List TAs assigned to a professor</a>
             </h4>
           </div>
-          <div id="collapseOne" class="panel-collapse collapse in">
+          <div id="collapseOne" class="panel-collapse collapse">
             <div class="panel-body">
-              <form action="getdata.php" method="post">
+              <form action="getTAs.php" method="post">
                 <?php
-                include 'getTAs.php';
+                include 'getProfs.php';
                 ?>
                 <br/>
                 <button class="btn btn-success">Get TAs</button>
@@ -69,7 +69,7 @@
           </div>
           <div id="collapseTwo" class="panel-collapse collapse">
             <div class="panel-body">
-              <form action="getdata.php" method="post">
+              <form action="getTAs.php" method="post">
                 <?php
                 include 'listCourses.php';
                 ?>

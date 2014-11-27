@@ -1,5 +1,5 @@
 <?php
-   $query = "select * from course";
+   $query = "select * from assignedto";
    $result = mysqli_query($connection,$query);
    if (!$result) {
         die("databases query failed.");
