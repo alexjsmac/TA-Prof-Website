@@ -164,7 +164,8 @@
                             <input type="radio" name="term" value="Fall"> Fall<br>
                             <input type="radio" name="term" value="Winter"> Winter<br>
                         Course Year: <input type="text" name="year"><br>
-                        Student ID: <input type="text" name="userid"><br><br>
+                        Student ID: <input type="text" name="userid"><br>
+                        Number of Students: <input type="text" name="numStudents"><br><br>
                         <input type="submit" value="Add New Assignment">
                    </form>
                    <h2>REMOVE A TA FROM A COURSE:</h2>
