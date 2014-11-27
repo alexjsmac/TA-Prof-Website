@@ -135,9 +135,16 @@
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <form action="assignProf.php" method="post">
-                        Professor's User ID: <input type="text" name="headid"><br>
-                        TA's User ID: <input type="text" name="studentid"><br>
+                    <form action="assignTA.php" method="post">
+                        <?php
+                        require_once 'getProfs.php';
+                        require_once 'getTAs.php';
+                        require_once 'connectdb.php';
+                        get_tas("studentid", $connection);
+                        echo '<br/>';
+                        get_profs("headid", $connection);
+                        ?>
+                        <br/>
                         Head supervisor or Co-Supervisor: <br>
                         <input type="radio" name="supervisor" value="head"> Head Supervisor<br>
                         <input type="radio" name="supervisor" value="co"> Co-Supervisor<br><br>
