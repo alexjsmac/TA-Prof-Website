@@ -74,6 +74,9 @@
               <form action="TATable.php" method="post">
                 <?php
                 include 'listCourses.php';
+                include 'termYearOpt.php';
+                select_term();
+                select_year();
                 ?>
                 <br/>
                 <button class="btn btn-success">Get TAs</button>
