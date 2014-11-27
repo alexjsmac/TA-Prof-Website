@@ -64,7 +64,7 @@
                             <input type="radio" name="type" value="PhD"> PhD<br>
                             <input type="radio" name="type" value="Masters"> Masters<br><br>
                         Upload Image: <input type="file" name="file" id="file"><br><br>
-                        <input type="submit" value="Add New TA">
+                        <button class="btn btn-success">Add TA</button>
                     </form>
                     <h2>DELETE A TA:</h2>
                     <form action="delTA.php" method="post">
@@ -114,7 +114,7 @@
                         First Name: <input type="text" name="firstname"><br>
                         Last Name: <input type="text" name="lastname"><br>
                         User ID: <input type="text" name="userid"><br><br>
-                       <input type="submit" value="Add New Professor">
+                        <input type="submit" value="Add New Professor">
                     </form>
                     <h2>DELETE A PROFESSOR:</h2>
                     <form action="delprof.php" method="post">
@@ -122,7 +122,7 @@
                           include 'getProfs.php';
                         ?>
                         <br/>
-                        <button class="btn btn-success">Delete Professor</button>
+                        <input type="submit" value="Delete Professor">
                     </form>
                 </div>
             </div>
