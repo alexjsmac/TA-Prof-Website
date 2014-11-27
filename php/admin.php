@@ -49,10 +49,38 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse">Add or delete a TA</a>
+                </h4>
+            </div>
+            <div id="collapse" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <h2>ADD A NEW TA:</h2>
+                    <form action="addnewta.php" method="post">
+                        First Name: <input type="text" name="firstname"><br>
+                        Last Name: <input type="text" name="lastname"><br>
+                        Student Number: <input type="text" name="studentnum"><br>
+                        User ID: <input type="text" name="userid"><br>
+                        Type: <br>
+                            <input type="radio" name="type" value="PhD"> PhD<br>
+                            <input type="radio" name="type" value="Masters"> Masters<br><br>
+                        <input type="file" name="file" id="file">Upload Image<br><br>
+                        <input type="submit" value="Add New TA">
+                   </form>
+                   <h2>DELETE A TA:</h2>
+                    <form action="delTA.php" method="post">
+                        User ID: <input type="text" name="userid"><br><br>
+                       <input type="submit" value="Delete TA">
+                   </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Modify a TA's information</a>
                 </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse in">
+            <div id="collapseOne" class="panel-collapse collapse">
                 <div class="panel-body">
                 </div>
             </div>
@@ -69,12 +97,12 @@
                     <form action="addnewprof.php" method="post">
                         First Name: <input type="text" name="firstname"><br>
                         Last Name: <input type="text" name="lastname"><br>
-                        User ID: <input type="text" name="userid"><br>
+                        User ID: <input type="text" name="userid"><br><br>
                        <input type="submit" value="Add New Professor">
                    </form>
                    <h2>DELETE A PROFESSOR:</h2>
                     <form action="delprof.php" method="post">
-                        User ID: <input type="text" name="userid"><br>
+                        User ID: <input type="text" name="userid"><br><br>
                        <input type="submit" value="Delete Professor">
                    </form>
                 </div>
@@ -88,7 +116,14 @@
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="http://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                    <form action="assignProf.php" method="post">
+                        Professor's User ID: <input type="text" name="headid"><br>
+                        TA's User ID: <input type="text" name="studentid"><br>
+                        Head supervisor or Co Supervisor?: <br>
+                            <input type="radio" name="term" value="head"> Head Supervisor<br>
+                            <input type="radio" name="term" value="Winter"> Co Supervisor<br><br>
+                        <input type="submit" value="Assign Prof">
+                    </form>
                 </div>
             </div>
         </div>
@@ -100,7 +135,17 @@
             </div>
             <div id="collapseFour" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="http://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                    <h2>ADD A NEW COURSE:</h2>
+                    <form action="addnewcourse.php" method="post">
+                        Course Name: <input type="text" name="coursename"><br>
+                        Course Number: <input type="text" name="coursenum"><br><br>
+                        <input type="submit" value="Add New Course">
+                   </form>
+                   <h2>DELETE A COURSE:</h2>
+                    <form action="delCourse.php" method="post">
+                        Course Number: <input type="text" name="coursenum"><br><br>
+                       <input type="submit" value="Delete Course">
+                   </form>
                 </div>
             </div>
         </div>
@@ -112,7 +157,26 @@
             </div>
             <div id="collapseFive" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="http://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                    <h2>ASSIGN A TA:</h2>
+                    <form action="addnewAssign.php" method="post">
+                        Course Number: <input type="text" name="coursenum"><br>
+                        Course Term: <br>
+                            <input type="radio" name="term" value="Fall"> Fall<br>
+                            <input type="radio" name="term" value="Winter"> Winter<br>
+                        Course Year: <input type="text" name="year"><br>
+                        Student ID: <input type="text" name="userid"><br><br>
+                        <input type="submit" value="Add New Assignment">
+                   </form>
+                   <h2>REMOVE A TA FROM A COURSE:</h2>
+                    <form action="delAssign.php" method="post">
+                        Course Number: <input type="text" name="coursenum"><br>
+                        Course Term: <br>
+                            <input type="radio" name="term" value="Fall"> Fall<br>
+                            <input type="radio" name="term" value="Winter"> Winter<br>
+                        Course Year: <input type="text" name="year"><br>
+                        Student ID: <input type="text" name="userid"><br><br>
+                       <input type="submit" value="Delete Course">
+                   </form>
                 </div>
             </div>
         </div>
