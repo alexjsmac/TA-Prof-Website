@@ -42,10 +42,6 @@
     <?php
     if ($whichProf != null)
     {
-      //$query = 'select t.firstname, t.lastname, t.studentnum, t.userid, t.type, t.image from ta AS t, prof AS p where t.headid=p.userid and t.headid="' . $whichProf . '"';
-      //$query = 'select t.firstname, t.lastname, t.studentnum, t.userid, t.type, t.image, t.headid FROM ta AS t ' .
-    //'WHERE t.userid IN (select c.superid FROM cosupervises AS c WHERE c.superid="' . $whichProf .
-      //'" UNION (select x.userid FROM ta AS x WHERE x.headid="' . $whichProf . '"))';
       $query = 'select t.firstname, t.lastname, t.studentnum, t.userid, t.type, t.image, t.headid from ta as t ' . 
       'where t.headid="' . $whichProf . '" union (select x.firstname, x.lastname, x.studentnum, x.userid, x.type, x.image, x.headid from ta as x where x.userid in (select c.studentid from' .
         ' cosupervises as c where c.superid="' . $whichProf . '"))';
