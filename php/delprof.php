@@ -10,18 +10,32 @@
 </head>
 <body>
 <?php
-   include 'connectdb.php';
+    include 'connectdb.php';
 ?>
 <h1>Attempting to delete professor:</h1>
 <ol>
 <?php
-   $userid = $_POST["userid"];
-   $query = 'delete from prof where userid=\'' . $userid . '\'';
-   if (!mysqli_query($connection, $query)) {
-        die("Error: insert failed" . mysqli_error($connection));
+    $userid = $_POST["userid"];
+    $query1 = 'select userid from ta where headid = "' . $userid . '"';
+    $result = mysqli_query($connection, $query1);
+    if (!$result) {
+        die("Error: delete failed" . mysqli_error($connection));
     }
-   echo "Professor was deleted!";
-   mysqli_close($connection);
+
+    if (mysqli_num_rows($result)>0)
+    {
+    	echo "Professor is a head supervisor. Either remove the student or change his/her Head Supervisor.";
+    }
+
+    else
+    {
+    	$query2 = 'delete from prof where userid=\'' . $userid . '\'';
+    	if (!mysqli_query($connection, $query2)) {
+        	die("Error: delete failed" . mysqli_error($connection));
+    	}
+    	echo "Professor was deleted!";
+    }
+    mysqli_close($connection);
 ?>
 </ol>
 </body>

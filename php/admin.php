@@ -65,12 +65,15 @@
                             <input type="radio" name="type" value="Masters"> Masters<br><br>
                         <input type="file" name="file" id="file">Upload Image<br><br>
                         <input type="submit" value="Add New TA">
-                   </form>
-                   <h2>DELETE A TA:</h2>
+                    </form>
+                    <h2>DELETE A TA:</h2>
                     <form action="delTA.php" method="post">
-                        User ID: <input type="text" name="userid"><br><br>
-                       <input type="submit" value="Delete TA">
-                   </form>
+                        <?php
+                          include 'getTAs.php';
+                        ?>
+                        <br/>
+                        <button class="btn btn-success">Delete TA</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -82,6 +85,19 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse">
                 <div class="panel-body">
+                    <h3>Which TA?</h3>
+                    <form action="modTA.php" method="post">
+                        <?php
+                          include 'getTAs.php';
+                        ?>
+                        <br/>
+                        Modify what? <br>
+                            <input type="radio" name="mod" value="firstname"> First name<br>
+                            <input type="radio" name="mod" value="lastname"> Last name<br>
+                            <input type="radio" name="mod" value="type"> Type<br>
+                        <input type="text" name
+                        <input type="submit" value="Modify">
+                    </form>
                 </div>
             </div>
         </div>
@@ -99,12 +115,15 @@
                         Last Name: <input type="text" name="lastname"><br>
                         User ID: <input type="text" name="userid"><br><br>
                        <input type="submit" value="Add New Professor">
-                   </form>
-                   <h2>DELETE A PROFESSOR:</h2>
+                    </form>
+                    <h2>DELETE A PROFESSOR:</h2>
                     <form action="delprof.php" method="post">
-                        User ID: <input type="text" name="userid"><br><br>
-                       <input type="submit" value="Delete Professor">
-                   </form>
+                        <?php
+                          include 'getProfs.php';
+                        ?>
+                        <br/>
+                        <button class="btn btn-success">Delete Professor</button>
+                    </form>
                 </div>
             </div>
         </div>
