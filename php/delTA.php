@@ -17,7 +17,8 @@
 <?php
    $userid = $_POST["userid"];
    $query = 'delete from ta where userid=\'' . $userid . '\'';
-   if (!mysqli_query($connection, $query)) {
+   $result = mysqli_query($connection, $query1);
+   if (!mysqli_query($connection, $result)) {
         die("Error: insert failed" . mysqli_error($connection));
     }
    echo "TA was deleted!";
