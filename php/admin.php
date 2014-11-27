@@ -91,12 +91,7 @@
                           include 'getTAs.php';
                         ?>
                         <br/>
-                        Modify what? <br>
-                            <input type="radio" name="mod" value="firstname"> First name<br>
-                            <input type="radio" name="mod" value="lastname"> Last name<br>
-                            <input type="radio" name="mod" value="type"> Type<br>
-                        <input type="text" name
-                        <input type="submit" value="Modify">
+                        <button class="btn btn-success">Modify</button>
                     </form>
                 </div>
             </div>
