@@ -14,6 +14,8 @@
   include 'connectdb.php';
   $whichProf = $_POST["professors"];
   $whichCourse = $_POST["courses"];
+  $whichTerm = $_POST["term"];
+  $whichYear = $_POST["year"];
   if ($whichProf != NULL) $toDisplay = $whichProf;
   else $toDisplay = $whichCourse;
   ?>
@@ -49,7 +51,8 @@
     else if ($whichCourse != null)
     {
       $query = 'select t.firstname, t.lastname, t.studentnum, t.userid, t.type, t.image, x.coursenum, c.coursenum FROM ta as t ' .
-      'join assignedto as x on t.userid = x.studentid join course as c on x.coursenum = c.coursenum where x.coursenum = "' . $whichCourse . '"';
+      'join assignedto as x on t.userid = x.studentid and x.term="' . $whichTerm .'" and x.year="' . $whichYear . '" join course as c' .
+      ' on x.coursenum = c.coursenum where x.coursenum = "' . $whichCourse . '"';
     }
 
     
