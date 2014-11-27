@@ -63,7 +63,7 @@
                         Type: <br>
                             <input type="radio" name="type" value="PhD"> PhD<br>
                             <input type="radio" name="type" value="Masters"> Masters<br><br>
-                        <input type="file" name="file" id="file">Upload Image<br><br>
+                        Upload Image: <input type="file" name="file" id="file"><br><br>
                         <input type="submit" value="Add New TA">
                    </form>
                    <h2>DELETE A TA:</h2>

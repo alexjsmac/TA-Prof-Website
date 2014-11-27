@@ -17,7 +17,7 @@
   $whichTerm = $_POST["term"];
   $whichYear = $_POST["year"];
   if ($whichProf != NULL) $toDisplay = $whichProf;
-  else $toDisplay = $whichCourse;
+  else $toDisplay = $whichCourse . ' - ' . $whichTerm . ' - ' . $whichYear;
   ?>
   <div class="container">
     <nav class="navbar navbar-default" role="navigation">
