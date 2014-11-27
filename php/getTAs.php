@@ -1,4 +1,7 @@
 <?php
+
+function get_tas($value, $connection)
+{
    $query = "select * from ta";
    $result = mysqli_query($connection,$query);
    if (!$result) {
@@ -12,10 +15,11 @@
    //}
 echo '<select name="TAs">';
 while ($row = mysqli_fetch_assoc($result)) {
-        echo '<option value="' . $row["userid"] . '">' . $row["firstname"] . " " . $row["lastname"] . '</option>';
+        echo '<option value="' . $row[$value] . '">' . $row["firstname"] . " " . $row["lastname"] . '</option>';
    }
    echo '</select><br/>';
 
 
    mysqli_free_result($result);
+}
 ?>
