@@ -186,24 +186,32 @@
                 <div class="panel-body">
                     <h2>ASSIGN A TA:</h2>
                     <form action="addnewAssign.php" method="post">
-                        Course Number: <input type="text" name="coursenum"><br>
-                        Course Term: <br>
-                        <input type="radio" name="term" value="Fall"> Fall<br>
-                        <input type="radio" name="term" value="Winter"> Winter<br>
-                        Course Year: <input type="text" name="year"><br>
-                        Student ID: <input type="text" name="userid"><br>
+                        <?php include 'listCourses.php';
+                        require_once 'termYearOpt.php';
+                        select_term();
+                        select_year();
+                        echo '<br/>';
+                        require_once 'getTAs.php';
+                        require_once 'connectdb.php';
+                        get_tas("userid", $connection);
+                         ?>
+                         <br/>
                         Number of Students: <input type="text" name="numStudents"><br><br>
-                        <input type="submit" value="Add New Assignment">
+                        <button class="btn btn-success">Add New Assignment</button>
                     </form>
                     <h2>REMOVE A TA FROM A COURSE:</h2>
                     <form action="delAssign.php" method="post">
-                        Course Number: <input type="text" name="coursenum"><br>
-                        Course Term: <br>
-                        <input type="radio" name="term" value="Fall"> Fall<br>
-                        <input type="radio" name="term" value="Winter"> Winter<br>
-                        Course Year: <input type="text" name="year"><br>
-                        Student ID: <input type="text" name="userid"><br><br>
-                        <input type="submit" value="Delete Course">
+                        <?php include 'listCourses.php';
+                        require_once 'termYearOpt.php';
+                        select_term();
+                        select_year();
+                        echo '<br/>';
+                        require_once 'getTAs.php';
+                        require_once 'connectdb.php';
+                        get_tas("userid", $connection);
+                         ?>
+                         <br/>
+                        <button class="btn btn-danger">Delete TA From Course</button>
                     </form>
                 </div>
             </div>
