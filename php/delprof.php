@@ -34,31 +34,48 @@
       </div><!-- /.container-fluid -->
     </nav>
 <h1>Attempting to delete professor:</h1>
-<ol>
 <?php
+if(isset($_POST["professors"]))
+  {
     $userid = $_POST["professors"];
+    if ($userid != null)
+    {
     $query1 = 'select userid from ta where headid = "' . $userid . '"';
     $result = mysqli_query($connection, $query1);
     if (!$result) {
-        die("Error: delete failed" . mysqli_error($connection));
+        die("Error: delete failed: " . mysqli_error($connection));
     }
 
     if (mysqli_num_rows($result)>0)
     {
-    	echo "Professor is a head supervisor. Either remove the student or change his/her Head Supervisor.";
+    	echo "Professor is a head supervisor. Either remove the student(s) or change his/her Head Supervisor.";
+    }
+
+    $query2 = 'select studentid from cosupervises where superid="' . $userid . '"';
+    $result = mysqli_query($connection, $query2);
+    if (!$result) {
+        die("Error: delete failed: " . mysqli_error($connection));
+    }
+
+    if (mysqli_num_rows($result)>0)
+    {
+        echo "Professor is a co-supervisor. Either remove the student(s) or change his/her Head Supervisor.";
     }
 
     else
     {
-    	$query2 = 'delete from prof where userid=\'' . $userid . '\'';
-    	if (!mysqli_query($connection, $query2)) {
-        	die("Error: delete failed" . mysqli_error($connection));
+    	$query3 = 'delete from prof where userid=\'' . $userid . '\'';
+    	if (!mysqli_query($connection, $query3)) {
+        	die("Error: delete failed: " . mysqli_error($connection));
     	}
     	echo "Professor with user ID '" . $userid . "' was deleted!";
     }
     mysqli_close($connection);
+}
+else echo "Error: Professor could not be removed.";
+}
+else echo "Error: Professor could not be removed.";
 ?>
-</ol>
 </div>
 </body>
 </html>

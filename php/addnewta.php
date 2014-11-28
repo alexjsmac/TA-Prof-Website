@@ -34,21 +34,30 @@
       </div><!-- /.container-fluid -->
     </nav>
 <h1>Attempting to add new TA:</h1>
-<ol>
 <?php
+  if((isset($_POST["firstname"])) && (isset($_POST["lastname"])) && (isset($_POST["studentnum"])) && (isset($_POST["userid"])))
+  {
    $firstname = $_POST["firstname"];
    $lastname = $_POST["lastname"];
    $studentnum = $_POST["studentnum"];
    $userid = $_POST["userid"];
    $type = $_POST["type"];
+   if ($firstname != null && $lastname != null && $studentnum != null && $userid != null && $type != null)
+   {
    $query = 'insert into ta (firstname, lastname, studentnum, userid, type) values (\'' . $firstname . '\',\'' .  $lastname . '\',\'' . $studentnum . '\',\'' . $userid . '\',\'' . $type . '\')';
    if (!mysqli_query($connection, $query)) {
-        die("Error: insert failed" . mysqli_error($connection));
+        die("Error: Insert failed: " . mysqli_error($connection));
     }
    echo "New TA was added!";
    mysqli_close($connection);
+ }
+ else echo "Error: TA was not added. Form was incomplete";
+ }
+ else
+ {
+  echo "Error: TA was not added. Form was incomplete.";
+ }
 ?>
-</ol>
 </div>
 </body>
 </html>

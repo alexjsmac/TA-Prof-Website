@@ -61,7 +61,7 @@
                         Student Number: <input type="text" name="studentnum"><br>
                         User ID: <input type="text" name="userid"><br>
                         Type: <br>
-                        <input type="radio" name="type" value="PhD"> PhD<br>
+                        <input type="radio" name="type" value="PhD" checked="true"> PhD<br>
                         <input type="radio" name="type" value="Masters"> Masters<br><br>
                         Upload Image: <input type="file" name="file" id="file"><br><br>
                         <button class="btn btn-success">Add TA</button>
@@ -75,6 +75,7 @@
                         ?>
                         <br/>
                         <button class="btn btn-danger">Delete TA</button>
+                        <br/><br/><b>Warning: Deleting a TA will remove all instances of them in the application.</b>
                     </form>
                 </div>
             </div>
@@ -162,7 +163,7 @@
             <div id="collapseFour" class="panel-collapse collapse">
                 <div class="panel-body">
                     <h2>ADD A NEW COURSE:</h2>
-                    <form action="addnewcourse.php" method="post">
+                    <form action="addCourse.php" method="post">
                         Course Name: <input type="text" name="coursename"><br>
                         Course Number: <input type="text" name="coursenum"><br><br>
                         <button class="btn btn-success">Add New Course</button>
@@ -172,6 +173,7 @@
                         <?php include 'listCourses.php' ?>
                         <br/>
                         <button class="btn btn-danger">Delete Course</button>
+                        <br/><br/><b>Warning: Deleting a Course will remove all instances of this course within the application.</b>
                     </form>
                 </div>
             </div>

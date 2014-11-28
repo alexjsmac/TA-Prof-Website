@@ -11,6 +11,7 @@
 <body>
   <?php
   include 'connectdb.php';
+  require_once 'functions.php';
   ?>
   <div class="container">
     <nav class="navbar navbar-default" role="navigation">
@@ -33,29 +34,38 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <h1>Attempting to add new professor:</h1>
+    <h1>Attempting to add a new course:</h1>
       <?php
-      if(isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["userid"]))
+      if(isset($_POST["coursename"]) && isset($_POST["coursenum"]))
       {
-       $firstname = $_POST["firstname"];
-       $lastname =$_POST["lastname"];
-       $userid = $_POST["userid"];
-       if ($firstname != null && $lastname != null && $userid != null)
+       $coursename = $_POST["coursename"];
+       $coursenum =$_POST["coursenum"];
+       if ($coursename != null && $coursenum != null)
        {
-         $query = 'insert into prof values("' . $firstname . '","' . $lastname . '","' . $userid . '")';
-         if (!mysqli_query($connection, $query)) {
+        $query1 = 'select coursenum from course where coursenum="' . $coursename . '"';
+        $result = query_database($connection, $query1);
+
+        if (mysqli_num_rows($result)>0)
+        {
+          echo "Course already exists.";
+        }
+        else
+        {
+          $query = 'insert into course values("' . $coursenum . '", "' . $coursename . '")';
+          if (!mysqli_query($connection, $query)) {
           die("Error: Insert failed: " . mysqli_error($connection));
         }
-        echo "New professor was added!";
+        echo "New course was added!";
         mysqli_close($connection);
+        }
       }
       else
       {
-        echo "Error: Professor was not added. Form was incomplete.";
+        echo "Error: Course was not added. Form was incomplete.";
       }
     }
     else
-      echo "Error: Professor was not added. Form was incomplete.";
+      echo "Error: Course was not added. Form was incomplete.";
       ?>
   </div>
 </body>

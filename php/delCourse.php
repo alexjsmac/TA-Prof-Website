@@ -30,30 +30,25 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-<h1>Attempting to delete TA:</h1>
+<h1>Attempting to delete course:</h1>
 <?php
 	require_once 'connectdb.php';
   require_once 'functions.php';
-  if(isset($_POST["TAs"]))
+  if(isset($_POST["courses"]))
   {
-   	$whichTA = $_POST["TAs"];
-
-    if ($whichTA != null)
+   	$whichCourse = $_POST["courses"];
+    if ($whichCourse != null)
     {
-    //First delete the cosupervisor rows containing the TA.
-    $query1 = 'delete from cosupervises where studentid="' . $whichTA . '"';
+    //First delete the assignedto rows containing the course.
+    $query1 = 'delete from assignedto where coursenum="' . $whichCourse . '"';
     $result = query_database($connection, $query1);
 
-    //Second delete the courses the ta are assigned to.
-    $query2 = 'delete from assignedto where studentid="' . $whichTA . '"';
-    $result = query_database($connection, $query2);
-
-    //Then delete the TA
-   	$query = 'delete from ta where userid="' . $whichTA . '"';
-    $result = mysqli_query($connection, $query);
+    //Second delete the course.
+    $query2 = 'delete from course where coursenum="' . $whichCourse . '"';
+    $result = mysqli_query($connection, $query2);
     if ($result) 
     {
-        echo "TA with user ID '" . $whichTA . "' was deleted!<br>";
+        echo "Course: '" . $whichCourse . "' was deleted!<br>";
     }
     else
     {
@@ -61,9 +56,9 @@
     }
    	mysqli_close($connection);
    }
-   else echo "Error: TA was not deleted.";
-   }
-   else echo "Error: TA was not deleted";
+   else echo "Error: Could not delete course.";
+ }
+ else echo "Error: Could not delete course.";
 ?>
 </div>
 </body>
