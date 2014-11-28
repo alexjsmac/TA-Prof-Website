@@ -10,7 +10,6 @@
 </head>
 <body>
 <?php
-    include 'upload_pic.php';
    include 'connectdb.php';
 ?>
 <div class="container">
@@ -34,35 +33,32 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-<h1>Attempting to add new TA:</h1>
+<h1>Attempting to assign TA to professor:</h1>
+<ol>
 <?php
-  if((isset($_POST["firstname"])) && (isset($_POST["lastname"])) && (isset($_POST["studentnum"])) && (isset($_POST["userid"])))
-  {
-    $firstname = $_POST["firstname"];
-    $lastname = $_POST["lastname"];
-    $studentnum = $_POST["studentnum"];
-    $userid = $_POST["userid"];
-    $type = $_POST["type"];
-    if (isset($userpic))
+    $ta = $_POST["TAs"];
+    $prof = $_POST["professors"];
+    $supervisor = $_POST["supervisor"];
+    if (strcmp($supervisor, "head") == 0)
     {
-      echo "Image connected!<br>";
-      $query = 'insert into ta (firstname, lastname, studentnum, userid, type, image) values (\'' . $firstname . '\',\'' .
-        $lastname . '\',\'' . $studentnum . '\',\'' . $userid . '\',\'' . $type . '\',\'' . $userpic . '\')';
+      $query = 'update ta set headid=\'' . $prof . '\' where userid = \'' . $ta . '\'';
+      if (!mysqli_query($connection, $query)) 
+      {
+        die("Error: assignment failed" . mysqli_error($connection));
+      }
+      echo "TA assigned a Head Supervisor!" . $ta . $prof . $supervisor;
     }
     else
     {
-      $query = 'insert into ta (firstname, lastname, studentnum, userid, type) values (\'' . $firstname . '\',\'' .  $lastname . '\',\'' . $studentnum . '\',\'' . $userid . '\',\'' . $type . '\')';
+      $query = 'insert into cosupervises (studentid, superid) values (\'' . $ta . '\',\'' .  $prof . '\')';
+      if (!mysqli_query($connection, $query)) {
+        die("Error: assignment failed" . mysqli_error($connection));
+      }
+      echo "TA assigned a co Supervisor!";
     }
-    if (!mysqli_query($connection, $query)) 
-    {
-      die("Error: Insert failed: " . mysqli_error($connection));
-    }
-    echo "New TA was added!";
-  }
-  else 
-    echo "Error: TA was not added. Form was incomplete";
-  mysqli_close($connection);
-?>
+    mysqli_close($connection);
+  ?>
+</ol>
 </div>
 </body>
 </html>
