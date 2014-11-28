@@ -31,7 +31,6 @@
 			</div><!-- /.container-fluid -->
 		</nav>
 		<h1>Attempting Assignment:</h1>
-		<ol>
 			<?php
 
 			include 'connectdb.php';
@@ -60,20 +59,48 @@
 				$year = $connection->real_escape_string($_POST["year"]);
 				$students = $connection->real_escape_string($_POST["numStudents"]);
 
-				$query = 'insert into assignedto (studentid, coursenum, term, year) values ("' . $userid .
-					'", "' . $course . '", "' . $term . '", "' . $year . '")';
+				//Check to see if TA already TAs the course at specified term and year.
+				$query1 = 'select studentid, coursenum, term, year from assignedto where ' .
+				'studentid="' . $userid . '" and coursenum="' . $course . '" and term="' . $term .
+				'" and year="' . $year . '"';
+				$result = query_database($connection, $query1);
 
-				if (validNumCourses($userid, $connection) == false)
+				if(mysqli_num_rows($result)>0)
 				{
-					die("TA has reached maxed number of courses they can TA.");
+					die("TA already TA's this course for the specified term and year.");
 				}
+
+				//Get the count of how many courses the TA has TAd.
+				$query2 = 'select count(studentid) from assignedto where studentid="' . $userid . '"';
+				$result = mysqli_query($connection, $query);
+
+				//Get the type of the TA
+				$query3 = 'select type from ta where userid="' . $userid . '"';
+				$type = query_database($connection, $query3);
+
+				$count = 0;
+				//Verify TA can TA the course
+				while($row = mysqli_fetch_assoc($result))
+				{
+					$count = $row["count(studentid)"];
+				}
+
+				if ($type=="Masters" && $count>3 || $type=="PhD" && $count>8)
+				{
+					die("TA Not Assigned: TA has maxed out the number of courses he/she can TA.");
+				}
+
+				//If we reached this point, the TA can TA the course.
+				$query4 = 'insert into assignedto (studentid, coursenum, term, year) values ("' . $userid .
+					'", "' . $course . '", "' . $term . '", "' . $year . '")';
 			}
 			else
-				echo "Error: Assignment failed.";
+				die("Error: Assignment failed.");
 
 			if (!mysqli_query($connection, $query)) {
-				die("Error: Query failed." . mysqli_error($connection));
+				die("Error: Assignment failed: " . mysqli_error($connection));
 			}
+
 			if($students != null)
 				{
 					set_num_students($course, $term, $year, $students,$connection);
@@ -82,7 +109,6 @@
 			mysqli_close($connection);
 
 			?>
-		</ol>
 	</div>
 </body>
 </html>

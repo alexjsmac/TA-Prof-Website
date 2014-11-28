@@ -202,7 +202,7 @@
                         <button class="btn btn-success">Add New Assignment</button>
                     </form>
                     <h2>REMOVE A TA FROM A COURSE:</h2>
-                    <form action="delAssign.php" method="post">
+                    <form action="delTAFromCourse.php" method="post">
                         <?php include 'listCourses.php';
                         require_once 'termYearOpt.php';
                         select_term();
