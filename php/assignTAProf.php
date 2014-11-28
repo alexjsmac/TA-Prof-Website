@@ -71,27 +71,26 @@
 				}
 
 				//Get the count of how many courses the TA has TAd.
-				$query2 = 'select count(studentid) from assignedto where studentid="' . $userid . '"';
-				$result = mysqli_query($connection, $query);
+				$query2 = 'select count(studentid) as total from assignedto where studentid="' . $userid . '"';
+				$result = mysqli_query($connection, $query2);
+				$row = mysqli_fetch_assoc($result);
+				$count = (int)$row["total"];
 
 				//Get the type of the TA
 				$query3 = 'select type from ta where userid="' . $userid . '"';
-				$type = query_database($connection, $query3);
+				$result = query_database($connection, $query3);
+				$row = mysqli_fetch_assoc($result);
+				$type = $row["type"];
 
-				$count = 0;
+
 				//Verify TA can TA the course
-				while($row = mysqli_fetch_assoc($result))
-				{
-					$count = $row["count(studentid)"];
-				}
-
-				if ($type=="Masters" && $count>3 || $type=="PhD" && $count>8)
+				if (($type=="Masters" && $count>3) || ($type=="PhD" && $count>8))
 				{
 					die("TA Not Assigned: TA has maxed out the number of courses he/she can TA.");
 				}
 
 				//If we reached this point, the TA can TA the course.
-				$query4 = 'insert into assignedto (studentid, coursenum, term, year) values ("' . $userid .
+				$query = 'insert into assignedto (studentid, coursenum, term, year) values ("' . $userid .
 					'", "' . $course . '", "' . $term . '", "' . $year . '")';
 			}
 			else

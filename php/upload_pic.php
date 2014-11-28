@@ -18,14 +18,14 @@
                         echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
             } else {
                         $uploadFolder->createFolder($uploadholder);
-                        if (file_exists("../upload/" . $_FILES["file"]["name"])) {
+                        if (file_exists("upload/" . $_FILES["file"]["name"])) {
                                     echo '<p><hr>';
                                     echo $_FILES["file"]["name"] . " already exists. ";
                                     echo '<p><hr>';
                                     $userpic = "NULL";
                         } else {
-                                    move_uploaded_file($_FILES["file"]["tmp_name"],"../upload/" . $_FILES["file"]["name"]);
-                                    $userpic = "../upload/" . $_FILES["file"]["name"];
+                                    move_uploaded_file($_FILES["file"]["tmp_name"],"upload/" . $_FILES["file"]["name"]);
+                                    $userpic = "upload/" . $_FILES["file"]["name"];
                         } // end of else
             } // end of else
      } else {
