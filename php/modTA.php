@@ -13,6 +13,8 @@
   <?php
   include 'connectdb.php';
   require_once 'upload_pic.php';
+  require_once 'login_status.php';
+  if(!$loggedin) header("Location: login.php");
   $whichTA = $_POST["TAs"];
   if(isset($_POST["fname"]) && isset($_POST["lname"]) && isset($_POST["type"]))
   {
@@ -104,6 +106,12 @@ else
 <?php
 mysqli_close($connection);
 ?>
+<div id="fix-for-navbar-spacing" style="height: 42px;">&nbsp;</div>
+    <div class = "navbar navbar-default navbar-fixed-bottom">
+      <div class = "container">
+        <p class = "navbar-text">CS3319A Assignment 3 - Created By Alex MacLean and William Callaghan</p>
+      </div>
+    </div>
 </div>
 </body>
 </html>

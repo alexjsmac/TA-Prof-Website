@@ -12,7 +12,7 @@
     <?php
     require_once 'connectdb.php';
     require_once 'login_status.php';
-    if(!$loggedin) header("Location: prof.php");
+    if(!$loggedin) header("Location: login.php");
     ?>
     <div class="container">
         <div class="jumbotron">
@@ -56,10 +56,10 @@
                 <div class="panel-body">
                     <h2>ADD A NEW TA:</h2>
                     <form action="addnewta.php" method="post" enctype="multipart/form-data">
-                        First Name: <input type="text" name="firstname"><br>
+                        First Name: <input type="text" name="firstname"><br/>
                         Last Name: <input type="text" name="lastname"><br>
-                        Student Number: <input type="text" name="studentnum"><br>
-                        User ID: <input type="text" name="userid"><br>
+                        Student #: &nbsp;<input type="text" name="studentnum"><br>
+                        User ID: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="userid"><br>
                         Type: <br>
                         <input type="radio" name="type" value="PhD" checked="true"> PhD<br>
                         <input type="radio" name="type" value="Masters"> Masters<br><br>
@@ -112,7 +112,7 @@
                     <form action="addnewprof.php" method="post">
                         First Name: <input type="text" name="firstname"><br>
                         Last Name: <input type="text" name="lastname"><br>
-                        User ID: <input type="text" name="userid"><br><br>
+                        User ID: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="userid"><br><br>
                         <button class="btn btn-success">Add New Professor</button>
                     </form>
                     <h2>DELETE A PROFESSOR:</h2>
@@ -164,7 +164,7 @@
                 <div class="panel-body">
                     <h2>ADD A NEW COURSE:</h2>
                     <form action="addCourse.php" method="post">
-                        Course Name: <input type="text" name="coursename"><br>
+                        Course Name: &nbsp;&nbsp;&nbsp;<input type="text" name="coursename"><br>
                         Course Number: <input type="text" name="coursenum"><br><br>
                         <button class="btn btn-success">Add New Course</button>
                     </form>
@@ -220,6 +220,12 @@
         </div>
     </div>
 </div>
+<div id="fix-for-navbar-spacing" style="height: 42px;">&nbsp;</div>
+    <div class = "navbar navbar-default navbar-fixed-bottom">
+      <div class = "container">
+        <p class = "navbar-text">CS3319A Assignment 3 - Created By Alex MacLean and William Callaghan</p>
+      </div>
+    </div>
 </div>
 </body>
 </html>                                     

@@ -99,6 +99,12 @@
   <?php
   mysqli_close($connection);
   ?>
+  <div id="fix-for-navbar-spacing" style="height: 42px;">&nbsp;</div>
+    <div class = "navbar navbar-default navbar-fixed-bottom">
+      <div class = "container">
+        <p class = "navbar-text">CS3319A Assignment 3 - Created By Alex MacLean and William Callaghan</p>
+      </div>
+    </div>
 </div>
 </body>
 </html>

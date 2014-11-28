@@ -11,6 +11,8 @@
 <body>
 <?php
     include 'connectdb.php';
+    require_once 'login_status.php';
+    if(!$loggedin) header("Location: login.php");
 ?>
 <div class="container">
 <nav class="navbar navbar-default" role="navigation">
@@ -76,6 +78,12 @@ else echo "Error: Professor could not be removed.";
 }
 else echo "Error: Professor could not be removed.";
 ?>
+<div id="fix-for-navbar-spacing" style="height: 42px;">&nbsp;</div>
+    <div class = "navbar navbar-default navbar-fixed-bottom">
+      <div class = "container">
+        <p class = "navbar-text">CS3319A Assignment 3 - Created By Alex MacLean and William Callaghan</p>
+      </div>
+    </div>
 </div>
 </body>
 </html>
