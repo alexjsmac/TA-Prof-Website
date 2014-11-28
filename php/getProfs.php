@@ -8,11 +8,6 @@ function get_profs($value, $connection)
   die("databases query failed.");
 }
 echo "Select a Professor:<br/>";
-   //while ($row = mysqli_fetch_assoc($result)) {
-        //echo '<input type="radio" name="professors" checked = "true" value="';
-        //echo $row["userid"];
-        //echo '">' . " " . $row["firstname"] . " " . $row["lastname"] . "<br>";
-   //}
 
 echo '<select name="professors">';
 while ($row = mysqli_fetch_assoc($result)) {

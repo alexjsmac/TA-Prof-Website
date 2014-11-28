@@ -71,25 +71,6 @@
 					die("TA already TA's this course for the specified term and year.");
 				}
 
-				//Get the count of how many courses the TA has TAd.
-				$query2 = 'select count(studentid) as total from assignedto where studentid="' . $userid . '"';
-				$result = mysqli_query($connection, $query2);
-				$row = mysqli_fetch_assoc($result);
-				$count = (int)$row["total"];
-
-				//Get the type of the TA
-				$query3 = 'select type from ta where userid="' . $userid . '"';
-				$result = query_database($connection, $query3);
-				$row = mysqli_fetch_assoc($result);
-				$type = $row["type"];
-
-
-				//Verify TA can TA the course
-				if (($type=="Masters" && $count>3) || ($type=="PhD" && $count>8))
-				{
-					die("TA Not Assigned: TA has maxed out the number of courses he/she can TA.");
-				}
-
 				//If we reached this point, the TA can TA the course.
 				$query = 'insert into assignedto (studentid, coursenum, term, year) values ("' . $userid .
 					'", "' . $course . '", "' . $term . '", "' . $year . '")';
@@ -102,10 +83,33 @@
 			}
 
 			if($students != null)
-				{
-					set_num_students($course, $term, $year, $students,$connection);
-				}
+			{
+				set_num_students($course, $term, $year, $students,$connection);
+			}
 			echo "Assignment successful.";
+
+			//Get the count of how many courses the TA has TAd.
+			$query2 = 'select count(studentid) as total from assignedto where studentid="' . $userid . '"';
+			$result = mysqli_query($connection, $query2);
+			$row = mysqli_fetch_assoc($result);
+			$count = (int)$row["total"];
+
+				//Get the type of the TA
+			$query3 = 'select type from ta where userid="' . $userid . '"';
+			$result = query_database($connection, $query3);
+			$row = mysqli_fetch_assoc($result);
+			$type = $row["type"];
+
+			echo '<br/><h4>Note: TA will now have been a TA for ' . $count . ' courses.</h4>';
+			if ($count>3 && $type == "Masters")
+			{
+				echo '<h4>Note: This is more than a Masters student is allowed to TA for. </h4>';
+			}
+			else if ($count>8 && $type == "PhD")
+			{
+				echo '<h4>Note: This is more than a PhD student is allowed to TA for. </h4>';
+			}
+
 			mysqli_close($connection);
 
 			?>

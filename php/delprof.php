@@ -61,7 +61,7 @@ if(isset($_POST["professors"]))
 
     if (mysqli_num_rows($result)>0)
     {
-        echo "Professor is a co-supervisor. Either remove the student(s) or change his/her Head Supervisor.";
+        echo "Professor is a co-supervisor. Either remove the student(s) or change his/her Co-Supervisor.";
     }
 
     else

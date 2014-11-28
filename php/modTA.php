@@ -21,7 +21,7 @@
    $fname = $connection->real_escape_string($_POST["fname"]);
    $lname = $connection->real_escape_string($_POST["lname"]);
    $type = $connection-> real_escape_string($_POST["type"]);
-   $file = $connection-> real_escape_string($_POST["file"]);
+   $file = $connection-> real_escape_string($userpic);
 
    if($fname == null && $lname == null)
    { 
@@ -37,7 +37,19 @@
   }
   else
   {
-    $query = 'update ta set firstname="' . $fname . '", lastname="' . $lname . '", type="' . $type . '", image="' . $file . '" where userid="' . $whichTA .'"';
+    // Delete old picture first if uploading a new one
+    if (isset($userpic))
+    {
+      // Remove picture from upload folder if one exists for this TA
+      $image = 'select image from ta where userid="' . $whichTA . '"';
+      $result = query_database($connection, $image);
+      if (mysqli_num_rows($result)>0)
+      {
+        $row = mysqli_fetch_assoc($result);
+        unlink($row["image"]);
+      }
+    }
+    $query = 'update ta set firstname="' . $fname . '", lastname="' . $lname . '", type="' . $type . '", image="' . $userpic . '" where userid="' . $whichTA .'"';
     $result = mysqli_query($connection, $query);
     if (!$result)
       $error = "Update failed. Please try again.";
@@ -102,6 +114,54 @@ else
   <?php echo '<input type="hidden" name="TAs" id="$TAs" value="' . $whichTA . '">'; ?>
   <button class="btn btn-success">Update</button>
 </form>
+
+<?php
+
+//Get the count of how many courses the TA has TAd.
+$query2 = 'select count(studentid) as total from assignedto where studentid="' . $whichTA . '"';
+$result = mysqli_query($connection, $query2);
+$row = mysqli_fetch_assoc($result);
+$count = (int)$row["total"];
+
+//Get the type of the TA
+$query3 = 'select type from ta where userid="' . $whichTA . '"';
+$result = query_database($connection, $query3);
+$row = mysqli_fetch_assoc($result);
+$type = $row["type"];
+
+echo '<br/><h4>Note: TA has been a TA for ' . $count . ' courses.</h4>';
+if ($count>3 && $type == "Masters")
+{
+  echo '<h4>Note: This is more than a Masters student is allowed to TA for. </h4>';
+}
+else if ($count>8 && $type == "PhD")
+{
+  echo '<h4>Note: This is more than a PhD student is allowed to TA for. </h4>';
+}
+?>
+
+<table class="table">
+<thead>
+<tr>
+<th>Course Number</th>
+<th>Term</th>
+<th>Year</th>
+</tr>
+</thead>
+<tbody>
+  <?php require_once 'functions.php';
+  $query5 = 'select coursenum, term, year from assignedto where studentid="' . $whichTA . '"';
+  $result = query_database($connection, $query5);
+  while ($row=mysqli_fetch_assoc($result)) {
+    echo '<tr>';
+    echo '<td>' . $row['coursenum'] . '</td>';
+    echo '<td>' . $row['term'] . '</td>';
+    echo '<td>' . $row['year'] . '</td>';
+  }
+  ?>
+</tbody>
+</table>
+
 
 <?php
 mysqli_close($connection);

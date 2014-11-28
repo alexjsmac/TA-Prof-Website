@@ -50,6 +50,15 @@
     $query2 = 'delete from assignedto where studentid="' . $whichTA . '"';
     $result = query_database($connection, $query2);
 
+    // Remove picture from upload folder if one exists for this TA
+    $image = 'select image from ta where userid="' . $whichTA . '"';
+    $result = query_database($connection, $image);
+    if (mysqli_num_rows($result)>0)
+    {
+      $row = mysqli_fetch_assoc($result);
+      unlink($row["image"]);
+    }
+
     //Then delete the TA
    	$query = 'delete from ta where userid="' . $whichTA . '"';
     $result = mysqli_query($connection, $query);

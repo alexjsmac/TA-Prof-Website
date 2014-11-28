@@ -13,6 +13,7 @@
   include 'connectdb.php';
   require_once 'functions.php';
   require_once 'login_status.php';
+  //If not logged in, redirect to login page.
   if(!$loggedin) header("Location: login.php");
   ?>
   <div class="container">

@@ -89,7 +89,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Modify a TA's information</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Modify/View a TA's information</a>
                 </h4>
             </div>
             <div id="collapseOne" class="panel-collapse collapse">
