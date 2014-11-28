@@ -21,7 +21,7 @@
    $fname = $connection->real_escape_string($_POST["fname"]);
    $lname = $connection->real_escape_string($_POST["lname"]);
    $type = $connection-> real_escape_string($_POST["type"]);
-   $file = $connection-> real_escape_string($_POST["file"]);
+   $file = $connection-> real_escape_string($userpic);
 
    if($fname == null && $lname == null)
    { 
@@ -37,6 +37,18 @@
   }
   else
   {
+    // Delete old picture first if uploading a new one
+    if (isset($userpic))
+    {
+      //Remove picture from upload folder if one exists for this TA
+      $image = 'select image from ta where userid ="' . $whichTA . '"';
+      $result = query_database($connection, $image);
+      if (mysqli_num_rows($result)>0)
+      {
+        $row = mysqli_fetch_assoc($result);
+        unlink($row["image"]);
+      }
+    }
     $query = 'update ta set firstname="' . $fname . '", lastname="' . $lname . '", type="' . $type . '", image="' . $file . '" where userid="' . $whichTA .'"';
     $result = mysqli_query($connection, $query);
     if (!$result)
