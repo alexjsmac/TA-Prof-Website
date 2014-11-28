@@ -83,7 +83,7 @@
         echo '<td>' . $row['studentnum'] . '</td>';
         echo '<td>' . $row['userid'] . '</td>';
         echo '<td>' . $row['type'] . '</td>';
-        echo '<td>' . $row['image'] . '</td>';
+        echo '<td><img src="' . $row['image'] . '" height="150" width="120"></td>';
         displayTypeInfo($row, $whichProf);
       }
       ?>

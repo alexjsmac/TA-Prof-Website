@@ -11,6 +11,7 @@
 <body>
 <?php
    include 'connectdb.php';
+   include 'upload_pic.php';
 ?>
 <div class="container">
 <nav class="navbar navbar-default" role="navigation">
@@ -42,9 +43,15 @@
    $studentnum = $_POST["studentnum"];
    $userid = $_POST["userid"];
    $type = $_POST["type"];
+   $userpic = $_POST["file"];
    if ($firstname != null && $lastname != null && $studentnum != null && $userid != null && $type != null)
    {
    $query = 'insert into ta (firstname, lastname, studentnum, userid, type) values (\'' . $firstname . '\',\'' .  $lastname . '\',\'' . $studentnum . '\',\'' . $userid . '\',\'' . $type . '\')';
+   if ($userpic != null)
+   {
+    $query = 'insert into ta (firstname, lastname, studentnum, userid, type, image) values (\'' . $firstname . '\',\'' .
+      $lastname . '\',\'' . $studentnum . '\',\'' . $userid . '\',\'' . $type . '\',\'' . $userpic . '\')';
+   }
    if (!mysqli_query($connection, $query)) {
         die("Error: Insert failed: " . mysqli_error($connection));
     }

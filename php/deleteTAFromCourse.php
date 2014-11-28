@@ -42,6 +42,13 @@
 
     if ($whichTA != null && $whichYear != null && $whichTerm != null)
     {
+      $query = 'select studentid from assignedto where studentid="' . $whichTA . '" and year="' . $whichYear . '" and term="' . $whichTerm . '"';
+      $result = query_database($connection, $query);
+      if (mysqli_num_rows($result)==0)
+      {
+        die("TA does not TA this course during the specified term and year.");
+      }
+
     //Second delete the courses the ta are assigned to.
     $query = 'delete from assignedto where studentid="' . $whichTA . '" and year="' . $whichYear . '" and term="' . $whichTerm . '"';
     $result = query_database($connection, $query);

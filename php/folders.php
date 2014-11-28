@@ -6,7 +6,7 @@ class Folder {
              return false; 
           } else {
 //if folder doesnt exist, then create it and set permissions
-              mkdir($foldername,0755);
+             mkdir($foldername,0755);
              $error = error_get_last();
              echo $error['message'];
             return false;

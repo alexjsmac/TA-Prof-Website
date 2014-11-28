@@ -55,7 +55,7 @@
             <div id="collapse" class="panel-collapse collapse">
                 <div class="panel-body">
                     <h2>ADD A NEW TA:</h2>
-                    <form action="addnewta.php" method="post">
+                    <form action="addnewta.php" method="post" enctype="multipart/form-data">
                         First Name: <input type="text" name="firstname"><br>
                         Last Name: <input type="text" name="lastname"><br>
                         Student Number: <input type="text" name="studentnum"><br>
@@ -202,7 +202,7 @@
                         <button class="btn btn-success">Add New Assignment</button>
                     </form>
                     <h2>REMOVE A TA FROM A COURSE:</h2>
-                    <form action="delTAFromCourse.php" method="post">
+                    <form action="deleteTAFromCourse.php" method="post">
                         <?php include 'listCourses.php';
                         require_once 'termYearOpt.php';
                         select_term();
