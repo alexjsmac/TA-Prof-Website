@@ -135,18 +135,18 @@
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <form action="assignTA.php" method="post">
+                    <form action="assignTAProf.php" method="post">
                         <?php
                         require_once 'getProfs.php';
                         require_once 'getTAs.php';
                         require_once 'connectdb.php';
-                        get_tas("studentid", $connection);
+                        get_tas("userid", $connection);
                         echo '<br/>';
-                        get_profs("headid", $connection);
+                        get_profs("userid", $connection);
                         ?>
                         <br/>
                         Head supervisor or Co-Supervisor: <br>
-                        <input type="radio" name="supervisor" value="head"> Head Supervisor<br>
+                        <input type="radio" name="supervisor" value="head" checked="true"> Head Supervisor<br>
                         <input type="radio" name="supervisor" value="co"> Co-Supervisor<br><br>
                         <button class="btn btn-success">Assign TA</button>
                     </form>
@@ -185,7 +185,7 @@
             <div id="collapseFive" class="panel-collapse collapse">
                 <div class="panel-body">
                     <h2>ASSIGN A TA:</h2>
-                    <form action="addnewAssign.php" method="post">
+                    <form action="assignTAProf.php" method="post">
                         <?php include 'listCourses.php';
                         require_once 'termYearOpt.php';
                         select_term();
