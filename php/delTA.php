@@ -33,24 +33,17 @@
 <h1>Attempting to delete TA:</h1>
 <ol>
 <?php
-<<<<<<< HEAD
 	include 'connectdb.php';
    	$whichTA = $_POST["TAs"];
    	$query = 'delete from ta where userid=\'' . $whichTA . '\'';
-    if (mysqli_query($connection, $query)) 
+    $result = mysqli_query($connection, $result);
+    if (mysqli_query($connection, $result)) 
     {
         echo "TA with user ID '" . $whichTA . "' was deleted!<br>";
     }
     else
     {
     	die("Error: insert failed" . mysqli_error($connection));
-=======
-   $userid = $_POST["userid"];
-   $query = 'delete from ta where userid=\'' . $userid . '\'';
-   $result = mysqli_query($connection, $query1);
-   if (!mysqli_query($connection, $result)) {
-        die("Error: insert failed" . mysqli_error($connection));
->>>>>>> 7c205f1bd4589abad774eb94f83d9bd7594d1f1b
     }
    	mysqli_close($connection);
 ?>
