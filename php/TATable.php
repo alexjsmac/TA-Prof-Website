@@ -12,12 +12,19 @@
 
   <?php
   include 'connectdb.php';
+  include 'count.php';
   $whichProf = $_POST["professors"];
   $whichCourse = $_POST["courses"];
   $whichTerm = $_POST["term"];
   $whichYear = $_POST["year"];
+
   if ($whichProf != NULL) $toDisplay = $whichProf;
-  else $toDisplay = $whichCourse . ' - ' . $whichTerm . ' - ' . $whichYear;
+  else  if ($whichCourse != null)
+    {
+      $result = num_students($whichCourse, $whichTerm, $whichYear, $connection);
+      $numstudents = mysqli_fetch_assoc($result);
+      $toDisplay = $whichCourse . ' - ' . $whichTerm . ' - ' . $whichYear . ' - Number of Students: ' . $numstudents["numstudents"];
+    }
   ?>
   <div class="container">
     <nav class="navbar navbar-default" role="navigation">
