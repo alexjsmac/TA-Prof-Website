@@ -51,7 +51,7 @@ else
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Twitter Bootstrap 3 Responsive Layout Example</title>
+  <title>Department of Computer Science - TA Management System</title>
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -59,10 +59,8 @@ else
 </head>
 <body>
   <div class="container">
-    <div class="jumbotron">
-      <h1 align="center">CS3319 Assignment 3</h1>
-      <p align="center">By: Alex MacLean & Will Callaghan</p>
-    </div>
+    <img src="../img/banner.jpg" style='width:100%;'/>
+        <br/><br/>
 
     <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
