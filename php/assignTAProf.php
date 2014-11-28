@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>CS3319 Assignment 3</title>
+	<title>Department of Computer Science - TA Management System</title>
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -32,9 +32,10 @@
 		</nav>
 		<h1>Attempting Assignment:</h1>
 			<?php
-
 			include 'connectdb.php';
 			require_once 'count.php';
+			require_once 'login_status.php';
+    		if(!$loggedin) header("Location: login.php");
 
 			if ((isset($_POST["TAs"])) && (isset($_POST["professors"])))
 			{
@@ -71,27 +72,26 @@
 				}
 
 				//Get the count of how many courses the TA has TAd.
-				$query2 = 'select count(studentid) from assignedto where studentid="' . $userid . '"';
-				$result = mysqli_query($connection, $query);
+				$query2 = 'select count(studentid) as total from assignedto where studentid="' . $userid . '"';
+				$result = mysqli_query($connection, $query2);
+				$row = mysqli_fetch_assoc($result);
+				$count = (int)$row["total"];
 
 				//Get the type of the TA
 				$query3 = 'select type from ta where userid="' . $userid . '"';
-				$type = query_database($connection, $query3);
+				$result = query_database($connection, $query3);
+				$row = mysqli_fetch_assoc($result);
+				$type = $row["type"];
 
-				$count = 0;
+
 				//Verify TA can TA the course
-				while($row = mysqli_fetch_assoc($result))
-				{
-					$count = $row["count(studentid)"];
-				}
-
-				if ($type=="Masters" && $count>3 || $type=="PhD" && $count>8)
+				if (($type=="Masters" && $count>3) || ($type=="PhD" && $count>8))
 				{
 					die("TA Not Assigned: TA has maxed out the number of courses he/she can TA.");
 				}
 
 				//If we reached this point, the TA can TA the course.
-				$query4 = 'insert into assignedto (studentid, coursenum, term, year) values ("' . $userid .
+				$query = 'insert into assignedto (studentid, coursenum, term, year) values ("' . $userid .
 					'", "' . $course . '", "' . $term . '", "' . $year . '")';
 			}
 			else
@@ -109,6 +109,12 @@
 			mysqli_close($connection);
 
 			?>
+			<div id="fix-for-navbar-spacing" style="height: 42px;">&nbsp;</div>
+    <div class = "navbar navbar-default navbar-fixed-bottom">
+      <div class = "container">
+        <p class = "navbar-text">CS3319A Assignment 3 - Created By Alex MacLean and William Callaghan</p>
+      </div>
+    </div>
 	</div>
 </body>
 </html>

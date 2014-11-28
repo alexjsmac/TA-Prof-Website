@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CS3319 Assignment 3</title>
+  <title>Department of Computer Science - TA Management System</title>
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -12,12 +12,19 @@
 
   <?php
   include 'connectdb.php';
+  include 'count.php';
   $whichProf = $_POST["professors"];
   $whichCourse = $_POST["courses"];
   $whichTerm = $_POST["term"];
   $whichYear = $_POST["year"];
+
   if ($whichProf != NULL) $toDisplay = $whichProf;
-  else $toDisplay = $whichCourse . ' - ' . $whichTerm . ' - ' . $whichYear;
+  else  if ($whichCourse != null)
+    {
+      $result = num_students($whichCourse, $whichTerm, $whichYear, $connection);
+      $numstudents = mysqli_fetch_assoc($result);
+      $toDisplay = $whichCourse . ' - ' . $whichTerm . ' - ' . $whichYear . ' - Number of Students: ' . $numstudents["numstudents"];
+    }
   ?>
   <div class="container">
     <nav class="navbar navbar-default" role="navigation">
@@ -92,6 +99,12 @@
   <?php
   mysqli_close($connection);
   ?>
+  <div id="fix-for-navbar-spacing" style="height: 42px;">&nbsp;</div>
+    <div class = "navbar navbar-default navbar-fixed-bottom">
+      <div class = "container">
+        <p class = "navbar-text">CS3319A Assignment 3 - Created By Alex MacLean and William Callaghan</p>
+      </div>
+    </div>
 </div>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CS3319 Assignment 3</title>
+<title>Department of Computer Science - TA Management System</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -10,8 +10,10 @@
 </head>
 <body>
 <?php
-    include 'upload_pic.php';
    include 'connectdb.php';
+   include 'upload_pic.php';
+   require_once 'login_status.php';
+   if(!$loggedin) header("Location: login.php");
 ?>
 <div class="container">
 <nav class="navbar navbar-default" role="navigation">
@@ -63,6 +65,12 @@
     echo "Error: TA was not added. Form was incomplete";
   mysqli_close($connection);
 ?>
+<div id="fix-for-navbar-spacing" style="height: 42px;">&nbsp;</div>
+    <div class = "navbar navbar-default navbar-fixed-bottom">
+      <div class = "container">
+        <p class = "navbar-text">CS3319A Assignment 3 - Created By Alex MacLean and William Callaghan</p>
+      </div>
+    </div>
 </div>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CS3319 Assignment 3</title>
+<title>Department of Computer Science - TA Management System</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -34,6 +34,8 @@
 <?php
 	require_once 'connectdb.php';
   require_once 'functions.php';
+  require_once 'login_status.php';
+  if(!$loggedin) header("Location: login.php");
   if(isset($_POST["courses"]))
   {
    	$whichCourse = $_POST["courses"];
@@ -60,6 +62,12 @@
  }
  else echo "Error: Could not delete course.";
 ?>
+<div id="fix-for-navbar-spacing" style="height: 42px;">&nbsp;</div>
+    <div class = "navbar navbar-default navbar-fixed-bottom">
+      <div class = "container">
+        <p class = "navbar-text">CS3319A Assignment 3 - Created By Alex MacLean and William Callaghan</p>
+      </div>
+    </div>
 </div>
 </body>
 </html>

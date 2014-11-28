@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CS3319 Assignment 3</title>
+  <title>Department of Computer Science - TA Management System</title>
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -12,13 +12,17 @@
 
   <?php
   include 'connectdb.php';
+  require_once 'upload_pic.php';
+  require_once 'login_status.php';
+  if(!$loggedin) header("Location: login.php");
   $whichTA = $_POST["TAs"];
   if(isset($_POST["fname"]) && isset($_POST["lname"]) && isset($_POST["type"]))
   {
    $fname = $connection->real_escape_string($_POST["fname"]);
    $lname = $connection->real_escape_string($_POST["lname"]);
    $type = $connection-> real_escape_string($_POST["type"]);
-   $currImage = $connection->real_escape_string($_POST["currImage"]);
+   $file = $connection-> real_escape_string($_POST["file"]);
+
    if($fname == null && $lname == null)
    { 
     $error = "First and Last name cannot be empty!";
@@ -33,7 +37,7 @@
   }
   else
   {
-    $query = 'update ta set firstname="' . $fname . '", lastname="' . $lname . '", type="' . $type . '", image="' . $currImage . 'where userid="' . $whichTA .'"';
+    $query = 'update ta set firstname="' . $fname . '", lastname="' . $lname . '", type="' . $type . '", image="' . $file . '" where userid="' . $whichTA .'"';
     $result = mysqli_query($connection, $query);
     if (!$result)
       $error = "Update failed. Please try again.";
@@ -83,7 +87,6 @@ else
   $fname = $row['firstname'];
   $lname = $row['lastname'];
   $type = $row['type'];
-  $currImage = $row['image'];
 }
 ?>
 
@@ -95,7 +98,7 @@ else
   'Last Name: <input type="text" name="lname" id="$lname" value ="' . $lname . '"><br>'; ?>
   Type: <br>
   <?php display_default($type)?>
-  <?php echo '<input type="file" name="file" id="file" value="' . $currImage . '"><br/>'; ?>
+  <?php echo '<input type="file" name="file" id="file"><br/>'; ?>
   <?php echo '<input type="hidden" name="TAs" id="$TAs" value="' . $whichTA . '">'; ?>
   <button class="btn btn-success">Update</button>
 </form>
@@ -103,6 +106,12 @@ else
 <?php
 mysqli_close($connection);
 ?>
+<div id="fix-for-navbar-spacing" style="height: 42px;">&nbsp;</div>
+    <div class = "navbar navbar-default navbar-fixed-bottom">
+      <div class = "container">
+        <p class = "navbar-text">CS3319A Assignment 3 - Created By Alex MacLean and William Callaghan</p>
+      </div>
+    </div>
 </div>
 </body>
 </html>
